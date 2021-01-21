@@ -20,27 +20,25 @@ class AlarmController {
          return (try? CoreDataStack.context.fetch(fetchRequest)) ?? []
     }
     
-    func createAlarm(withTitle title: String, and fireDate: Date){
-        Alarm(title: title, fireDate: fireDate)
+    func createAlarm(withTitle title: String, isEnabled: Bool, fireDate: Date){
+        Alarm(title: title, isEnabled: isEnabled, fireDate: fireDate)
         CoreDataStack.saveContext()
     }
     
     func update(alarm: Alarm, newTitle: String, newFireDate: Date, isEnabled: Bool) {
-        let alarmToUpdate = alarm
-        
+        alarm.title = newTitle
+        alarm.fireDate = newFireDate
+        alarm.isEnabled = isEnabled
+        CoreDataStack.saveContext()
     }
     
     func toggleIsEnabledFor(alarm: Alarm) {
-        
+        alarm.isEnabled.toggle()
+        CoreDataStack.saveContext()
     }
     
     func delete(alarm: Alarm) {
-        
+        CoreDataStack.context.delete(alarm)
+        CoreDataStack.saveContext()
     }
-    
-    func saveToPersistentStore(){
-        
-    }
-    
-    
 }

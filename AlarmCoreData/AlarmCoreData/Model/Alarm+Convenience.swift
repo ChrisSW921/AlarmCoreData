@@ -8,7 +8,7 @@
 import CoreData
 
 extension Alarm {
-    @discardableResult convenience init(title: String, isEnabled: Bool = true, fireDate: Date, uuidString: String = UUID().uuidString, context: NSManagedObjectContext = CoreDataStack.context){
+    @discardableResult convenience init(title: String, isEnabled: Bool, fireDate: Date, uuidString: String = UUID().uuidString, context: NSManagedObjectContext = CoreDataStack.context){
         self.init(context: context)
         self.title = title
         self.isEnabled = isEnabled
