@@ -41,7 +41,8 @@ class AlarmListTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let alarm = AlarmController.shared.alarms[indexPath.row]
+            AlarmController.shared.delete(alarm: alarm)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
